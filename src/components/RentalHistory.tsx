@@ -8,19 +8,21 @@ interface Props {
 
 const RentalHistory = ({ rentals }: Props) => {
     return (
-        <div className="bg-white rounded-2xl p-6 shadow-sm">
-            <h2 className="text-lg font-semibold text-gray-800">
-                Rental History
-            </h2>
-
-            <div className="mt-6 space-y-4">
-                {rentals.map((rental) => (
-                    <RentalCard
-                        key={rental.id}
-                        rental={rental}
-                    />
-                ))}
-            </div>
+        <div className="mt-6">
+            {rentals.length === 0 ? (
+                <div className="text-center py-12 text-gray-400">
+                    No rental history found
+                </div>
+            ) : (
+                <div className="space-y-4">
+                    {rentals.map((rental) => (
+                        <RentalCard
+                            key={rental.id}
+                            rental={rental}
+                        />
+                    ))}
+                </div>
+            )}
         </div>
     );
 };
