@@ -10,15 +10,23 @@ const TenancyScore = ({ score, rating }: Props) => {
                 Tenancy Score
             </h2>
 
-            <div className="mt-6 flex items-center justify-center">
-                <div className="w-36 h-36 rounded-full border-[12px] border-green-500 flex flex-col items-center justify-center">
-                    <span className="text-4xl font-bold text-gray-800">
-                        {score}
-                    </span>
+            <div className="flex justify-center mt-8">
+                <div className="relative w-40 h-40">
 
-                    <span className="text-sm text-gray-500 mt-1">
-                        {rating}
-                    </span>
+                    <div className="absolute inset-0 rounded-full border-[14px] border-green-500" />
+
+                    <div className="absolute inset-4 rounded-full bg-white flex flex-col items-center justify-center">
+
+                        <span className="text-5xl font-bold text-gray-800">
+                            {score}
+                        </span>
+
+                        <span className="text-sm text-gray-500 mt-2">
+                            {rating}
+                        </span>
+
+                    </div>
+
                 </div>
             </div>
         </div>
