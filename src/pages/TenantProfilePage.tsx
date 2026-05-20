@@ -12,6 +12,7 @@ import ProfileSkeleton from '../components/ProfileSkeleton';
 const TenantProfilePage = () => {
     const [tenant, setTenant] = useState<Tenant | null>(null);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const loadTenant = async () => {
@@ -20,6 +21,7 @@ const TenantProfilePage = () => {
                 setTenant(data);
             } catch (error) {
                 console.error(error);
+                setError('Failed to load tenant profile');
             } finally {
                 setLoading(false);
             }
@@ -42,6 +44,24 @@ const TenantProfilePage = () => {
         return (
             <div className="min-h-screen flex items-center justify-center">
                 Failed to load tenant data
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-[#f5f7fb]">
+                <div className="bg-white p-8 rounded-2xl shadow-sm text-center">
+
+                    <h2 className="text-xl font-semibold text-red-500">
+                        Something went wrong
+                    </h2>
+
+                    <p className="text-gray-500 mt-2">
+                        {error}
+                    </p>
+
+                </div>
             </div>
         );
     }
