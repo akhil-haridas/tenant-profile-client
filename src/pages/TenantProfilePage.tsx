@@ -4,6 +4,8 @@ import { fetchTenantProfile } from '../api/tenant.api';
 
 import type { Tenant } from '../types/tenant.types';
 
+import { motion } from 'framer-motion';
+
 import ProfileHeader from '../components/ProfileHeader';
 import TenancyScore from '../components/TenancyScore';
 import RentalHistory from '../components/RentalHistory';
@@ -67,24 +69,32 @@ const TenantProfilePage = () => {
     }
 
     return (
-        <div className="min-h-screen bg-[#f5f7fb] p-4 md:p-8">
-            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-                <div className="lg:col-span-1 space-y-6">
-                    <ProfileHeader tenant={tenant} />
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+        >
+            <div className="min-h-screen bg-[#f5f7fb] p-4 md:p-8">
+                <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-                    <TenancyScore
-                        score={tenant.score}
-                        rating={tenant.rating}
-                    />
+                    <div className="lg:col-span-1 space-y-6">
+                        <ProfileHeader tenant={tenant} />
+
+                        <TenancyScore
+                            score={tenant.score}
+                            rating={tenant.rating}
+                        />
+                    </div>
+
+                    <div className="lg:col-span-2">
+                        <RentalHistory rentals={tenant.rentals} />
+                    </div>
+
                 </div>
-
-                <div className="lg:col-span-2">
-                    <RentalHistory rentals={tenant.rentals} />
-                </div>
-
             </div>
-        </div>
+        </motion.div>
+
     );
 };
 
