@@ -7,6 +7,7 @@ import type { Tenant } from '../types/tenant.types';
 import ProfileHeader from '../components/ProfileHeader';
 import TenancyScore from '../components/TenancyScore';
 import RentalHistory from '../components/RentalHistory';
+import ProfileSkeleton from '../components/ProfileSkeleton';
 
 const TenantProfilePage = () => {
     const [tenant, setTenant] = useState<Tenant | null>(null);
@@ -29,8 +30,10 @@ const TenantProfilePage = () => {
 
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center">
-                Loading...
+            <div className="min-h-screen bg-[#f5f7fb] p-4 md:p-8">
+                <div className="max-w-6xl mx-auto">
+                    <ProfileSkeleton />
+                </div>
             </div>
         );
     }
